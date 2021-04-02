@@ -6,7 +6,7 @@ import java.util.Date;
 import money.paybox.payboxsdk.Utils.ParseUtils;
 
 
-public class Card implements Parcelable {
+public class MyCard implements Parcelable {
     private String status;
     private String merchantId;
     private String cardId;
@@ -14,7 +14,7 @@ public class Card implements Parcelable {
     private String cardhash;
     private Date date;
 
-    public Card(String status, String merchantId, String cardId, String recurringProfile, String cardhash, String date) {
+    public MyCard(String status, String merchantId, String cardId, String recurringProfile, String cardhash, String date) {
         this.status = status;
         this.merchantId = merchantId;
         this.cardId = cardId;
@@ -52,7 +52,7 @@ public class Card implements Parcelable {
     }
 
 
-    protected Card(Parcel in) {
+    protected MyCard(Parcel in) {
         status = in.readString();
         merchantId = in.readString();
         cardId = in.readString();
@@ -78,15 +78,15 @@ public class Card implements Parcelable {
     }
 
     @SuppressWarnings("unused")
-    public static final Parcelable.Creator<Card> CREATOR = new Parcelable.Creator<Card>() {
+    public static final Parcelable.Creator<MyCard> CREATOR = new Parcelable.Creator<MyCard>() {
         @Override
-        public Card createFromParcel(Parcel in) {
-            return new Card(in);
+        public MyCard createFromParcel(Parcel in) {
+            return new MyCard(in);
         }
 
         @Override
-        public Card[] newArray(int size) {
-            return new Card[size];
+        public MyCard[] newArray(int size) {
+            return new MyCard[size];
         }
     };
 }
