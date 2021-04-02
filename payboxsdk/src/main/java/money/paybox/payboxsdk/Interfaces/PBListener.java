@@ -3,7 +3,7 @@ package money.paybox.payboxsdk.Interfaces;
 import java.util.ArrayList;
 
 import money.paybox.payboxsdk.Model.Capture;
-import money.paybox.payboxsdk.Model.Card;
+import money.paybox.payboxsdk.Model.MyCard;
 import money.paybox.payboxsdk.Model.Error;
 import money.paybox.payboxsdk.Model.PStatus;
 import money.paybox.payboxsdk.Model.RecurringPaid;
@@ -14,12 +14,12 @@ import money.paybox.payboxsdk.Model.Response;
  */
 
 public interface PBListener {
-    void onCardList(ArrayList<Card> cards);
+    void onCardList(ArrayList<MyCard> cards);
     void onPaymentRevoke(Response response);
     void onPaymentPaid(Response response);
     void onPaymentStatus(PStatus pStatus);
     void onCardAdded(Response response);
-    void onCardRemoved(Card card);
+    void onCardRemoved(MyCard card);
     void onCardPayInited(Response response);
     void onCardPaid(Response response);
     void onRecurringPaid(RecurringPaid recurringPaid);
