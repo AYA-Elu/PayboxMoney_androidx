@@ -32,3 +32,5 @@
 -keep class money.paybox.payboxsdk.PBHelper$* { *; }
 -keep class money.paybox.payboxsdk.Utils.* { *; }
 -keep class money.paybox.payboxsdk.Utils.*$* { *; }
+-keep class money.paybox.sample.ui.fragments.* { *; }
+-keep class money.paybox.sample.ui.fragments.*$* { *; }
