@@ -17,7 +17,7 @@ import money.paybox.paybox.Fragments.FragmentPaymentA;
 import money.paybox.paybox.Fragments.FragmentPaymentB;
 import money.paybox.payboxsdk.Interfaces.PBListener;
 import money.paybox.payboxsdk.Model.Capture;
-import money.paybox.payboxsdk.Model.Card;
+import money.paybox.payboxsdk.Model.MyCard;
 import money.paybox.payboxsdk.Model.Error;
 import money.paybox.payboxsdk.Model.PStatus;
 import money.paybox.payboxsdk.Model.RecurringPaid;
@@ -76,14 +76,14 @@ public class HomeActivity extends AppCompatActivity implements PBListener {
     }
 
     @Override
-    public void onCardList(ArrayList<Card> cards) {
+    public void onCardList(ArrayList<MyCard> cards) {
         if(cards.isEmpty()){
             fragmentCard.showCardResult.setText("");
         }
         String message = new String();
-        for(Card card : cards){
-            message += "Card hash = "+card.getCardhash()+"\n"+
-                    "Card ID = "+card.getCardId()+"\n"+
+        for(MyCard card : cards){
+            message += "MyCard hash = "+card.getCardhash()+"\n"+
+                    "MyCard ID = "+card.getCardId()+"\n"+
                     "Recurring profile = "+card.getRecurringProfile()+"\n"+
                     "Created At = "+card.getDate()+"\n"+
                     "Status = "+card.getStatus()+"\n\n";
@@ -114,7 +114,7 @@ public class HomeActivity extends AppCompatActivity implements PBListener {
     }
 
     @Override
-    public void onCardRemoved(Card card) {
+    public void onCardRemoved(MyCard card) {
         if(card!=null) {
             fragmentCard.remCardResult.setText("\nDeleted At = " + card.getDate() +
                     "\nStatus = " + card.getStatus());
