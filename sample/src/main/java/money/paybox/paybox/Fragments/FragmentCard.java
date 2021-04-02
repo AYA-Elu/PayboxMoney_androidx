@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 import butterknife.OnClick;
 import money.paybox.payboxsdk.Model.Capture;
-import money.paybox.payboxsdk.Model.Card;
+import money.paybox.payboxsdk.Model.MyCard;
 import money.paybox.payboxsdk.Model.Error;
 import money.paybox.payboxsdk.Model.PStatus;
 import money.paybox.payboxsdk.Model.RecurringPaid;
