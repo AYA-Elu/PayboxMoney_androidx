@@ -3,11 +3,8 @@ package money.paybox.payboxsdk.Utils;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
-import android.util.Log;
 
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * Created by arman on 07.11.17.
@@ -43,6 +40,8 @@ public class PBResultReceiver extends ResultReceiver {
         void onRecurringPayed(JSONObject jsonObject);
         void onDoCaptureInited(JSONObject jsonObject);
         void onCardListLoaded(JSONObject jsonObject);
+
+        void onPaymentInited();
     }
     private Receiver receiver;
     public PBResultReceiver(Handler handler) {
