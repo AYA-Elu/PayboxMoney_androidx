@@ -16,7 +16,9 @@
 
         <activity android:name=".UI.WebActivity"
             android:noHistory="true"
-            android:theme="@style/SDKWEB"></activity>
+            android:theme="@style/SDKWEB">
+
+        </activity>
     </application>
 
 </manifest>
