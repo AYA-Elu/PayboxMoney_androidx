@@ -3,17 +3,21 @@ package money.paybox.payboxsdk;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import money.paybox.payboxsdk.Interfaces.PBListener;
 import money.paybox.payboxsdk.Model.Capture;
-import money.paybox.payboxsdk.Model.Card;
+import money.paybox.payboxsdk.Model.MyCard;
 import money.paybox.payboxsdk.Model.Configuration;
 import money.paybox.payboxsdk.Model.Error;
 import money.paybox.payboxsdk.Model.PStatus;
@@ -25,6 +29,8 @@ import money.paybox.payboxsdk.Utils.PBResultReceiver;
 import money.paybox.payboxsdk.Utils.ParseUtils;
 import money.paybox.payboxsdk.Utils.ServerHelper;
 
+
+
 /**
  * Created by arman on 07.11.17.
  */
@@ -34,6 +40,10 @@ public class PBHelper implements PBResultReceiver.Receiver {
     private JSONObject responseJson;
     private static ParseUtils parser = ParseUtils.getInstance();
     public ArrayList<PBListener> pbListeners;
+
+    public void onScanInited() {
+    }
+
     public enum OPERATION {
         PAYMENT, REVOKE, CANCEL, CAPTURE, RECURRING, GETSTATUS, CARDLIST, CARDADD, CARDREMOVE, CARDPAY, CARDPAYINIT
     }
@@ -160,7 +170,7 @@ public class PBHelper implements PBResultReceiver.Receiver {
             JSONObject card = response.optJSONObject(Constants.CARD);
             if(card!=null){
                 for(PBListener pbListener : pbListeners){
-                    pbListener.onCardRemoved(new Card(
+                    pbListener.onCardRemoved(new MyCard(
                             card.optString(Constants.PB_STATUS),
                             card.optString(Constants.MERCHANT_ID),
                             card.optString(Constants.PB_CARD_ID),
@@ -227,14 +237,14 @@ public class PBHelper implements PBResultReceiver.Receiver {
 
     @Override
     public void onCardListLoaded(JSONObject jsonObject) {
-        ArrayList<Card> cards = new ArrayList<>();
+        ArrayList<MyCard> cards = new ArrayList<>();
         JSONObject response = jsonObject.optJSONObject(Constants.RESPONSE);
         if(response!=null){
             JSONArray card_array = response.optJSONArray(Constants.CARD);
             JSONObject card = response.optJSONObject(Constants.CARD);
             if(card_array!=null){
                 for(int o=0; o<card_array.length();o++){
-                    cards.add(new Card(
+                    cards.add(new MyCard(
                             card_array.optJSONObject(o).optString(Constants.PB_STATUS),
                             card_array.optJSONObject(o).optString(Constants.MERCHANT_ID),
                             card_array.optJSONObject(o).optString(Constants.PB_CARD_ID),
@@ -244,7 +254,7 @@ public class PBHelper implements PBResultReceiver.Receiver {
                 }
             }
             if(card!=null){
-                cards.add(new Card(
+                cards.add(new MyCard(
                         card.optString(Constants.PB_STATUS),
                         card.optString(Constants.MERCHANT_ID),
                         card.optString(Constants.PB_CARD_ID),
@@ -274,6 +284,11 @@ public class PBHelper implements PBResultReceiver.Receiver {
             }
 
         }
+
+    }
+
+    @Override
+    public void onPaymentInited() {
 
     }
 
@@ -471,13 +486,16 @@ public class PBHelper implements PBResultReceiver.Receiver {
 
 
 
-    public static final class Builder {
+    public static class Builder {
         Context context;
         public Builder(Context context, String secretKey, int merchantId){
             this.context = context;
             configuration = new Configuration();
             configuration.setSECRET_KEY(secretKey);
             configuration.setMERCHANT_ID(merchantId);
+        }
+
+        public Builder(Context actContext, String paybox_public_key, String merchantId) {
         }
 
         public Builder setPaymentLifeTime(int lifetime){
