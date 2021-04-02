@@ -2,12 +2,13 @@ package money.paybox.payboxsdk.UI;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import money.paybox.payboxsdk.PBHelper;
 import money.paybox.payboxsdk.R;
