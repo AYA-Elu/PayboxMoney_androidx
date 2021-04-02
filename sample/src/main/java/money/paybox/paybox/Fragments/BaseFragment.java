@@ -17,7 +17,7 @@ import money.paybox.paybox.App;
 import money.paybox.paybox.R;
 import money.paybox.payboxsdk.Interfaces.PBListener;
 import money.paybox.payboxsdk.Model.Capture;
-import money.paybox.payboxsdk.Model.Card;
+import money.paybox.payboxsdk.Model.MyCard;
 import money.paybox.payboxsdk.Model.Error;
 import money.paybox.payboxsdk.Model.PStatus;
 import money.paybox.payboxsdk.Model.RecurringPaid;
